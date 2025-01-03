@@ -1,0 +1,19 @@
+{
+    "name": "lijingping/self-use",
+    "description": "自己常用的一些方法",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lijingping\\SelfUse\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lijingping",
+            "email": "lijingping@qq.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
