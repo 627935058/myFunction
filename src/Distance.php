@@ -39,7 +39,7 @@ class Distance
      * 点到线的距离 高德
      * $pos =  [116.377904, 39.915423],$path = [[116.368904, 39.913423],[116.382122, 39.901176],[116.387271, 39.912501],[116.398258, 39.904600]]
      */
-    public static function point_to_line($pos = [], $path = [], bool $if_unit = true): float
+    public static function point_to_line($pos = [], $path = []): float
     {
         $distance = [];
         //线段个数
@@ -54,17 +54,8 @@ class Distance
         } else {
             $distance[] = 0;
         }
-        $distance = min($distance);
-        if ($if_unit) {
-            if ($distance < 1000) {
-                $distance = round($distance, 2);
-            } else {
-                $distance = round($distance / 1000, 2);
-            }
-        } else {
-            $distance = round($distance, 2);
-        }
-        return $distance;
+        //保留两位小数
+        return round(min($distance), 2);
     }
 
     /**

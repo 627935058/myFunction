@@ -25,7 +25,7 @@ class Rsa
      *@author 云升网络
      * 2024/3/1 13:31
      */
-    public static function generateKeys(): array
+    public function generateKeys(): array
     {
         $config = array(
             "digest_alg" => "sha512",
@@ -41,7 +41,8 @@ class Rsa
             'private_key_name'=>self::$rsa_root_path.self::$private_key_name,
             'public_key_name'=>self::$rsa_root_path.self::$public_key_name,
             'public_key'=>$publicKey['key'],
-            'private_key'=>$privateKey
+            'private_key'=>$privateKey,
+            'rsa_root_path'=>self::$rsa_root_path
         ];
     }
     /**
