@@ -688,7 +688,7 @@ class Timer
     }
 
     /**
-     * 获取指定时间，指定天数的所有日期
+     * 获取指定时间之前N天的所有日期
      * @param $start  //指定时间
      * @param $days     //指定天数
      * @param bool $about_today     //是否包含指定时间
@@ -709,6 +709,17 @@ class Timer
         return self::getDaysArr($days, $start, $format, $sort);
     }
 
+    /**
+     * 获取指定日期之后N天所有时间
+     * @author 云升网络
+     * 2025/1/6 11:44
+     * @param $start
+     * @param $days
+     * @param bool $about_today
+     * @param string $format
+     * @param string $sort
+     * @return array
+     */
     public static function getAfterDaysArr($start,$days, bool $about_today=true, string $format='Y-m-d', string $sort='asc'): array
     {
         if(!self::isTimestamp($start)) {
@@ -716,5 +727,30 @@ class Timer
         }
         $get_start=$about_today?$start:$start+24*3600;
         return self::getDaysArr($days, $get_start, $format, $sort);
+    }
+
+    /**
+     * 获取指定日期内的所有时间
+     * @author 云升网络
+     * 2025/1/6 13:11
+     * @param $start
+     * @param $end
+     * @param string $format
+     * @param string $sort
+     * @return array
+     */
+    public static function getDayArr($start,$end, string $format='Y-m-d', string $sort='asc'): array
+    {
+        if(!self::isTimestamp($start)) {
+            $start=self::toTimestamp($start);
+        }
+        if(!self::isTimestamp($end)) {
+            $end=self::toTimestamp($end);
+        }
+        $days=self::diffDays($start,$end);
+        if($start > $end) {
+            $start=$end;
+        }
+        return self::getDaysArr($days, $start, $format, $sort);
     }
 }

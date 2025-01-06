@@ -7,9 +7,6 @@ require 'vendor/autoload.php';
 use Lijingping\SelfUse\Aes;
 use Lijingping\SelfUse\Rsa;
 use Lijingping\SelfUse\Timer;
+use Lijingping\SelfUse\Sundry;
 
-//$res=(new Rsa())::generateKeys();
-$start = '2025-01-06 15:00:00';
-var_dump(Timer::getAfterDaysArr($start,7));
-//var_dump($res);
-//var_dump(dirname(__DIR__));
+var_dump(Timer::getDayArr('2025-01-01 23:00:00', '2025-01-9 23:00:00'));
