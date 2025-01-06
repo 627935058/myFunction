@@ -2,6 +2,7 @@
 
 namespace Lijingping\SelfUse;
 /**
+ * 坐标需经度在前，维度在后
  * lon 经度
  * lat 维度
  */
