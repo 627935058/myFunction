@@ -18,7 +18,7 @@ class Aes
      * @author 云升网络
      * 2025/1/3 17:01
      */
-    public static function encrypt($data, $key='',$model='cbc')
+    public static function encrypt(string $data, string $key='', string $model='cbc'): ?string
     {
         if(empty($key)){
             $key = md5(static::$key);
@@ -38,7 +38,7 @@ class Aes
      * @param String $model 操作模式
      * @return string
      */
-    public static function decrypt($data, $key='',$model='cbc')
+    public static function decrypt(string $data, string $key='', string $model='cbc'): ?string
     {
         if(empty($key)){
             $key = md5(static::$key);
@@ -51,7 +51,7 @@ class Aes
         return null;
     }
 
-    private static function encrypt_ecb($data, $key)
+    private static function encrypt_ecb($data, $key): string
     {
         return base64_encode(openssl_encrypt($data, 'AES-128-ECB', $key, OPENSSL_RAW_DATA));
     }

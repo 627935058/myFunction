@@ -72,7 +72,7 @@ class IdCard
      * @param $id_card
      * @return bool
      */
-    private static function RegexpMatchIdCard($id_card)
+    private static function RegexpMatchIdCard($id_card): bool
     {
         //校验身份证位数和出生日期部分
         $pattern = "/^\d{6}(18|19|20)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|[xX])$/";
@@ -119,11 +119,13 @@ class IdCard
 
     /**
      * 获取星座
-     * @author 云升网络
-     * 2025/1/3 14:01
+     * @param $birthDate
      * @return string|null
+     *@author 云升网络
+     * 2025/1/6 09:23
      */
-    private static function getZodiacSign($birthDate) {
+    private static function getZodiacSign($birthDate): ?string
+    {
         $birthDate = DateTime::createFromFormat('Y-m-d', $birthDate);
         // 检查日期格式是否有效
         if (!$birthDate) {

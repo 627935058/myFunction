@@ -25,7 +25,7 @@ class Rsa
      *@author 云升网络
      * 2024/3/1 13:31
      */
-    public static function generateKeys()
+    public static function generateKeys(): array
     {
         $config = array(
             "digest_alg" => "sha512",
@@ -47,7 +47,7 @@ class Rsa
     /**
      * 自定义私钥加密处理
      */
-    public static function private_encrypt_custom($data,$private_key)
+    public static function private_encrypt_custom($data,$private_key): array
     {
         if ( ( is_array( $data ) || is_object( $data ) ) && !empty( $data ) )
         {
@@ -73,7 +73,7 @@ class Rsa
      * @author 云升网络
      * 2024/3/1 11:58
      */
-    public static function public_encrypt($data,$publicKey='')
+    public static function public_encrypt($data, string $publicKey=''): string
     {
         if(empty($publicKey)){
             $publicKey=file_get_contents(self::$rsa_root_path . self::$public_key_name);
@@ -90,7 +90,7 @@ class Rsa
      * @author 云升网络
      * 2024/3/1 11:58
      */
-    public static function private_decrypt($data,$privateKey='')
+    public static function private_decrypt($data, string $privateKey=''): string
     {
         if(empty($privateKey)){
             $privateKey=file_get_contents(self::$rsa_root_path . self::$private_key_name);
@@ -101,13 +101,13 @@ class Rsa
 
     /**
      * 私钥加密
-     * @author 云升网络
-     * 2024/4/10 17:56
      * @param $data
      * @param string $privateKey
      * @return string
+     *@author 云升网络
+     * 2024/4/10 17:56
      */
-    public static function private_encrypt($data,$privateKey='')
+    public static function private_encrypt($data,string $privateKey=''): string
     {
         if(empty($privateKey)){
             $privateKey=file_get_contents(self::$rsa_root_path . self::$private_key_name);
@@ -124,7 +124,7 @@ class Rsa
      * @author 云升网络
      * 2024/4/10 17:56
      */
-    public static function public_decrypt($data,$publicKey='')
+    public static function public_decrypt($data, string $publicKey=''): string
     {
         if(empty($publicKey)){
             $publicKey=file_get_contents(self::$rsa_root_path . self::$public_key_name);
