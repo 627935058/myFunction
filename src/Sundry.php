@@ -61,10 +61,10 @@ class Sundry
             $posA = array_search($a[$keys], $order);
             $posB = array_search($b[$keys], $order);
             if ($posA === false) {
-                $posA = PHP_INT_MAX; // 如果 $a['no'] 不在 $order 中，则给它一个很大的值
+                $posA = PHP_INT_MAX; // 如果 $a[$keys] 不在 $order 中，则给它一个很大的值
             }
             if ($posB === false) {
-                $posB = PHP_INT_MAX; // 如果 $b['no'] 不在 $order 中，则给它一个很大的值
+                $posB = PHP_INT_MAX; // 如果 $b[$keys] 不在 $order 中，则给它一个很大的值
             }
             return $posA - $posB;
         });
@@ -192,5 +192,33 @@ class Sundry
             }
         }
         return $prefix . $result;
+    }
+
+    /**
+     * 构建树形结构
+     * @author 云升网络
+     * 2025/1/6 15:47
+     * @param array $comments
+     * @param int $parentId
+     * @param string $field
+     * @param string $p_field
+     * @return array
+     */
+    public static function buildCommentTree(array $comments, int $parentId = 0,string $field='id', string $p_field='pid'): array
+    {
+        $branch = [];
+        foreach ($comments as $comment) {
+            if ($comment[$p_field] == $parentId) {
+                // 递归获取子评论
+                $children = self::buildCommentTree($comments, $comment[$field],$field,$p_field);
+                if ($children) {
+                    $comment['children'] = $children; // 将子评论添加到当前评论中
+                }else{
+                    $comment['children'] = [];
+                }
+                $branch[] = $comment;
+            }
+        }
+        return $branch;
     }
 }
