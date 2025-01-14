@@ -46,27 +46,6 @@ class Rsa
         ];
     }
     /**
-     * 自定义私钥加密处理
-     */
-    public static function private_encrypt_custom($data,$private_key): array
-    {
-        if ( ( is_array( $data ) || is_object( $data ) ) && !empty( $data ) )
-        {
-            $data = json_encode( $data );
-        }
-        //需要加密的字符串进行base64加密
-        $b64en=base64_encode($data);
-        //需要加密的字符串按照可加密最大长度进行切割转换为数组并循环加密
-        $b64arr=str_split($b64en,240);
-        $res_arr=[];
-        foreach ($b64arr as $k=>$v){
-            $res_arr[]=self::private_encrypt($v,$private_key);
-        }
-        return $res_arr;
-    }
-
-
-    /**
      * 公钥加密
      * @param $data
      * @param string $publicKey
@@ -97,7 +76,7 @@ class Rsa
             $privateKey=file_get_contents(self::$rsa_root_path . self::$private_key_name);
         }
         openssl_private_decrypt(base64_decode($data), $decrypted, $privateKey);
-        return $decrypted;
+        return $decrypted??'';
     }
 
     /**
@@ -131,6 +110,6 @@ class Rsa
             $publicKey=file_get_contents(self::$rsa_root_path . self::$public_key_name);
         }
         openssl_public_decrypt(base64_decode($data),$decrypted,$publicKey);
-        return $decrypted;
+        return $decrypted??'';
     }
 }
