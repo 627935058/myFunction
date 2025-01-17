@@ -221,4 +221,19 @@ class Sundry
         }
         return $branch;
     }
+
+    /**
+     * 验证经纬度是否有效
+     * @param $latitude  //维度 范围（-90,90）
+     * @param $longitude //经度 范围（-180,180）
+     * @return bool
+     *@author 云升网络
+     * 2025/1/17 11:12
+     */
+    public static function isValidCoordinate($latitude, $longitude): bool
+    {
+        return is_numeric($latitude) && is_numeric($longitude) &&
+            $latitude >= -90 && $latitude <= 90 &&
+            $longitude >= -180 && $longitude <= 180;
+    }
 }
