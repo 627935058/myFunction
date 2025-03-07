@@ -6,8 +6,8 @@ namespace Lijingping\SelfUse;
  **/
 class Aes
 {
-    protected static $key='9dNnGWz73e14cQF1';
-    protected static $iv='3zyJFPEzh5rUeUNi';
+    protected static string $key='9dNnGWz73e14cQF1';
+    protected static string $iv='3zyJFPEzh5rUeUNi';
 
     /**
      * AES加密

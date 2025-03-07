@@ -20,10 +20,9 @@ class Sundry
     public static function array_sort(array $array, string $keys, int $sort = SORT_ASC): array
     {
         if(empty($array)) return [];
-        $keyValues = [];
-        foreach ($array as $k => $v) {
-            $keyValues[$k] = $v[$keys];
-        }
+        $keyValues = array_map(function ($v) use ($keys) {
+            return $v[$keys];
+        }, $array);
         array_multisort($keyValues, $sort, $array);
         return $array;
     }
@@ -39,7 +38,7 @@ class Sundry
     public static function array_group(array $array, string $keys): array
     {
         $arr = [];
-        foreach ($array as $k => $v) {
+        foreach ($array as $v) {
             $arr[$v[$keys]][] = $v;
         }
         return $arr;

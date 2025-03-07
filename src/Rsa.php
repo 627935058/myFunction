@@ -7,9 +7,9 @@ class Rsa
     //证书所在位置
     protected static $rsa_root_path;
     //公钥文件名称
-    protected static $public_key_name='public_key.pem';
+    protected static string $public_key_name='public_key.pem';
     //私钥文件名称
-    protected static $private_key_name='private_key.pem';
+    protected static string $private_key_name='private_key.pem';
     public function __construct($path='')
     {
         if(empty($path)){

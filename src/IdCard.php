@@ -8,7 +8,7 @@ use DateTime;
  **/
 class IdCard
 {
-    protected static $province=[
+    protected static array $province=[
         '11'=>'北京市',
         '12'=>'天津市',
         '13'=>'河北省',
